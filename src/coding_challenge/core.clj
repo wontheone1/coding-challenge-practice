@@ -1,6 +1,8 @@
 (ns coding-challenge.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(set! *warn-on-reflection* true)
+
+; (set! *unchecked-math* true) ;for the performance reason
+
+(defn ^int solution [^ints x] ;type hints for performance
+  )
