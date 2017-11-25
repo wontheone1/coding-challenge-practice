@@ -5,5 +5,11 @@
 (facts
   "Some tests"
   (fact
-    "Dummy tests "
-    1 => 1))
+    "test 1"
+    (solution (int-array [1 3 6 4 1 2])) => 5)
+  (fact
+    "test 2"
+    (solution (int-array [1 2 3])) => 4)
+  (fact
+    "test 3"
+    (solution (int-array [-1 -3])) => 1))
