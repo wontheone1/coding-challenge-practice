@@ -12,22 +12,31 @@
     (let [input (int-array [1 3 6 4 1 2])]
       (= 5
          (solution-by-int-array-sequential-impl input)
+         (solution-by-int-array-sequential-impl-without-hint input)
          (solution-by-int-array-parallel-impl input)
-         (solution-by-persistent-vector input))) => true)
+         (solution-by-int-array-parallel-impl-without-hint input)
+         (solution-by-persistent-vector input)
+         (solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 2"
     (let [input (int-array [1 2 3])]
       (= 4
          (solution-by-int-array-sequential-impl input)
+         (solution-by-int-array-sequential-impl-without-hint input)
          (solution-by-int-array-parallel-impl input)
-         (solution-by-persistent-vector input))) => true)
+         (solution-by-int-array-parallel-impl-without-hint input)
+         (solution-by-persistent-vector input)
+         (solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 3"
     (let [input (int-array [-1 -3])]
       (= 1
          (solution-by-int-array-sequential-impl input)
+         (solution-by-int-array-sequential-impl-without-hint input)
          (solution-by-int-array-parallel-impl input)
-         (solution-by-persistent-vector input))) => true)
+         (solution-by-int-array-parallel-impl-without-hint input)
+         (solution-by-persistent-vector input)
+         (solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 4"
     (let [input (int-array [1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 4 4
@@ -35,8 +44,11 @@
                             27 28 30 31 34 36 36 36 45 46 47 49 53 55 61 67 68 80 89 93 108 126])]
       (= 5
          (solution-by-int-array-sequential-impl input)
+         (solution-by-int-array-sequential-impl-without-hint input)
          (solution-by-int-array-parallel-impl input)
-         (solution-by-persistent-vector input))) => true)
+         (solution-by-int-array-parallel-impl-without-hint input)
+         (solution-by-persistent-vector input)
+         (solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 5"
     (let [input (int-array [4 -96 -4 -2 0 -1 0
@@ -56,8 +68,11 @@
                             1 0])]
       (= 8
          (solution-by-int-array-sequential-impl input)
+         (solution-by-int-array-sequential-impl-without-hint input)
          (solution-by-int-array-parallel-impl input)
-         (solution-by-persistent-vector input))) => true))
+         (solution-by-int-array-parallel-impl-without-hint input)
+         (solution-by-persistent-vector input)
+         (solution-by-persistent-vector-without-hint input))) => true))
 
 (def element-gen
   (gen/large-integer* {:min -1000000, :max 1000000}))
@@ -78,12 +93,30 @@
 
 (time
   (fact
+    (println :solution-by-int-array-sequential-impl-without-hint)
+    (tc/quick-check 1 (find-by-solution solution-by-int-array-sequential-impl-without-hint))
+    => #(:result %)))
+
+(time
+  (fact
     (println :solution-by-persistent-vector)
     (tc/quick-check 1 (find-by-solution solution-by-persistent-vector))
     => #(:result %)))
 
 (time
   (fact
+    (println :solution-by-persistent-vector-without-hint)
+    (tc/quick-check 1 (find-by-solution solution-by-persistent-vector-without-hint))
+    => #(:result %)))
+
+(time
+  (fact
     (println :solution-by-int-array-parallel-impl)
     (tc/quick-check 1 (find-by-solution solution-by-int-array-parallel-impl))
+    => #(:result %)))
+
+(time
+  (fact
+    (println :solution-by-int-array-parallel-impl-without-hint)
+    (tc/quick-check 1 (find-by-solution solution-by-int-array-parallel-impl-without-hint))
     => #(:result %)))
