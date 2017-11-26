@@ -18,6 +18,22 @@
                   (catch Throwable _)))
     (first (filter #(not (zero? %)) int-seq))))
 
+(defn solution-by-int-array-parallel-impl [^ints xs]        ;type hints for performance
+  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
+    (doall (pmap (fn [num]
+                   (try (aset int-seq num 0)
+                        (catch Throwable _)))
+                 xs))
+    (first (filter #(not (zero? %)) int-seq))))
+
+(defn solution-by-int-array-parallel-impl-without-hint [xs]        ;type hints for performance
+  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
+    (doall (pmap (fn [num]
+                   (try (aset int-seq num 0)
+                        (catch Throwable _)))
+                 xs))
+    (first (filter #(not (zero? %)) int-seq))))
+
 (defn solution-by-persistent-vector [^ints xs]              ;type hints for performance
   (let [int-vec (vec (take (+ 2 (alength xs)) (range)))
         not-occurring-ints (reduce (fn [int-vec num]
@@ -37,19 +53,3 @@
                                    int-vec
                                    xs)]
     (first (filter #(not (zero? %)) not-occurring-ints))))
-
-(defn solution-by-int-array-parallel-impl [^ints xs]        ;type hints for performance
-  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
-    (doall (pmap (fn [num]
-                   (try (aset int-seq num 0)
-                        (catch Throwable _)))
-                 xs))
-    (first (filter #(not (zero? %)) int-seq))))
-
-(defn solution-by-int-array-parallel-impl-without-hint [xs]        ;type hints for performance
-  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
-    (doall (pmap (fn [num]
-                   (try (aset int-seq num 0)
-                        (catch Throwable _)))
-                 xs))
-    (first (filter #(not (zero? %)) int-seq))))
