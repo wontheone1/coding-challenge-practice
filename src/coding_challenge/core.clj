@@ -1,6 +1,6 @@
 (ns coding-challenge.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(set! *warn-on-reflection* true)
+
+(defn solution [^ints input-ints]
+  1)
