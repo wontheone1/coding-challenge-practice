@@ -15,6 +15,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -27,6 +28,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -39,6 +41,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -53,6 +56,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -79,6 +83,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -109,6 +114,8 @@
       (tc/quick-check 1 (find-by-solution core/solution-by-int-array-map-sequential-impl-without-hint number-of-ints))
       => #(:result %)))
 
+  (println)
+
   (time
     (fact
       (println :solution-by-int-array-reduce-sequential-impl)
@@ -120,6 +127,14 @@
       (println :solution-by-int-array-reduce-sequential-impl-without-hint)
       (tc/quick-check 1 (find-by-solution core/solution-by-int-array-reduce-sequential-impl-without-hint
                                           number-of-ints))
+      => #(:result %)))
+
+  (println)
+
+  (time
+    (fact
+      (println :solution-by-int-array-parallel-impl-typehint-for-int)
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-parallel-impl-typehint-for-int number-of-ints))
       => #(:result %)))
 
   (time
@@ -134,6 +149,8 @@
       (tc/quick-check 1 (find-by-solution core/solution-by-int-array-parallel-impl-without-hint number-of-ints))
       => #(:result %)))
 
+  (println)
+
   (time
     (fact
       (println :solution-by-persistent-vector)
@@ -144,7 +161,10 @@
     (fact
       (println :solution-by-persistent-vector-without-hint)
       (tc/quick-check 1 (find-by-solution core/solution-by-persistent-vector-without-hint number-of-ints))
-      => #(:result %))))
+      => #(:result %)))
+
+  (println)
+  (println))
 
 (measure-performance-of-all-function 50000)
 
