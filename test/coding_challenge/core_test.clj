@@ -2,7 +2,7 @@
   (:require [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
-            [coding-challenge.core :refer :all]
+            [coding-challenge.core :as core]
             [midje.sweet :refer :all]))
 
 (facts
@@ -11,44 +11,44 @@
     "test 1"
     (let [input (int-array [1 3 6 4 1 2])]
       (= 5
-         (solution-by-int-array-sequential-impl input)
-         (solution-by-int-array-sequential-impl-without-hint input)
-         (solution-by-int-array-parallel-impl input)
-         (solution-by-int-array-parallel-impl-without-hint input)
-         (solution-by-persistent-vector input)
-         (solution-by-persistent-vector-without-hint input))) => true)
+         (core/solution-by-int-array-sequential-impl input)
+         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl input)
+         (core/solution-by-int-array-parallel-impl-without-hint input)
+         (core/solution-by-persistent-vector input)
+         (core/solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 2"
     (let [input (int-array [1 2 3])]
       (= 4
-         (solution-by-int-array-sequential-impl input)
-         (solution-by-int-array-sequential-impl-without-hint input)
-         (solution-by-int-array-parallel-impl input)
-         (solution-by-int-array-parallel-impl-without-hint input)
-         (solution-by-persistent-vector input)
-         (solution-by-persistent-vector-without-hint input))) => true)
+         (core/solution-by-int-array-sequential-impl input)
+         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl input)
+         (core/solution-by-int-array-parallel-impl-without-hint input)
+         (core/solution-by-persistent-vector input)
+         (core/solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 3"
     (let [input (int-array [-1 -3])]
       (= 1
-         (solution-by-int-array-sequential-impl input)
-         (solution-by-int-array-sequential-impl-without-hint input)
-         (solution-by-int-array-parallel-impl input)
-         (solution-by-int-array-parallel-impl-without-hint input)
-         (solution-by-persistent-vector input)
-         (solution-by-persistent-vector-without-hint input))) => true)
+         (core/solution-by-int-array-sequential-impl input)
+         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl input)
+         (core/solution-by-int-array-parallel-impl-without-hint input)
+         (core/solution-by-persistent-vector input)
+         (core/solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 4"
     (let [input (int-array [1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 4 4
                             6 7 7 8 8 9 9 10 11 11 12 13 13 14 15 15 15 16 18 24 26
                             27 28 30 31 34 36 36 36 45 46 47 49 53 55 61 67 68 80 89 93 108 126])]
       (= 5
-         (solution-by-int-array-sequential-impl input)
-         (solution-by-int-array-sequential-impl-without-hint input)
-         (solution-by-int-array-parallel-impl input)
-         (solution-by-int-array-parallel-impl-without-hint input)
-         (solution-by-persistent-vector input)
-         (solution-by-persistent-vector-without-hint input))) => true)
+         (core/solution-by-int-array-sequential-impl input)
+         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl input)
+         (core/solution-by-int-array-parallel-impl-without-hint input)
+         (core/solution-by-persistent-vector input)
+         (core/solution-by-persistent-vector-without-hint input))) => true)
   (fact
     "test 5"
     (let [input (int-array [4 -96 -4 -2 0 -1 0
@@ -67,12 +67,12 @@
                             20 58 -4 -150
                             1 0])]
       (= 8
-         (solution-by-int-array-sequential-impl input)
-         (solution-by-int-array-sequential-impl-without-hint input)
-         (solution-by-int-array-parallel-impl input)
-         (solution-by-int-array-parallel-impl-without-hint input)
-         (solution-by-persistent-vector input)
-         (solution-by-persistent-vector-without-hint input))) => true))
+         (core/solution-by-int-array-sequential-impl input)
+         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl input)
+         (core/solution-by-int-array-parallel-impl-without-hint input)
+         (core/solution-by-persistent-vector input)
+         (core/solution-by-persistent-vector-without-hint input))) => true))
 
 (def element-gen
   (gen/large-integer* {:min -1000000, :max 1000000}))
@@ -90,38 +90,38 @@
   (time
     (fact
       (println :solution-by-int-array-sequential-impl)
-      (tc/quick-check 1 (find-by-solution solution-by-int-array-sequential-impl number-of-ints))
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-sequential-impl number-of-ints))
       => #(:result %)))
 
   (time
     (fact
       (println :solution-by-int-array-sequential-impl-without-hint)
-      (tc/quick-check 1 (find-by-solution solution-by-int-array-sequential-impl-without-hint number-of-ints))
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-sequential-impl-without-hint number-of-ints))
       => #(:result %)))
 
 
   (time
     (fact
       (println :solution-by-int-array-parallel-impl)
-      (tc/quick-check 1 (find-by-solution solution-by-int-array-parallel-impl number-of-ints))
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-parallel-impl number-of-ints))
       => #(:result %)))
 
   (time
     (fact
       (println :solution-by-int-array-parallel-impl-without-hint)
-      (tc/quick-check 1 (find-by-solution solution-by-int-array-parallel-impl-without-hint number-of-ints))
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-parallel-impl-without-hint number-of-ints))
       => #(:result %)))
 
   (time
     (fact
       (println :solution-by-persistent-vector)
-      (tc/quick-check 1 (find-by-solution solution-by-persistent-vector number-of-ints))
+      (tc/quick-check 1 (find-by-solution core/solution-by-persistent-vector number-of-ints))
       => #(:result %)))
 
   (time
     (fact
       (println :solution-by-persistent-vector-without-hint)
-      (tc/quick-check 1 (find-by-solution solution-by-persistent-vector-without-hint number-of-ints))
+      (tc/quick-check 1 (find-by-solution core/solution-by-persistent-vector-without-hint number-of-ints))
       => #(:result %))))
 
 (measure-performance-of-all-function 50000)
