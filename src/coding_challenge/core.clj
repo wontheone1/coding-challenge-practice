@@ -4,7 +4,7 @@
 
 ; (set! *unchecked-math* true) ;for the performance reason
 
-(defn ^int solution [^ints xs] ;type hints for performance
+(defn solution [^ints xs] ;type hints for performance
   (let [int-seq (int-array (take (inc (alength xs)) (rest (range))))]
     (areduce xs i _ nil
              (try (aset int-seq (dec (aget xs i)) 0)
