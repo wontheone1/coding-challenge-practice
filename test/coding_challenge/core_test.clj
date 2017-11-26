@@ -2,8 +2,8 @@
   (:require [clojure.test.check :as tc]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]
-            [midje.sweet :refer :all]
-            [coding-challenge.core :refer :all]))
+            [coding-challenge.core :refer :all]
+            [midje.sweet :refer :all]))
 
 (facts
   "Some tests"
