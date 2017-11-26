@@ -15,6 +15,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-aset-int input)
          (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
@@ -28,6 +29,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-aset-int input)
          (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
@@ -41,6 +43,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-aset-int input)
          (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
@@ -56,6 +59,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-aset-int input)
          (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
@@ -83,6 +87,7 @@
          (core/solution-by-int-array-map-sequential-impl-without-hint input)
          (core/solution-by-int-array-reduce-sequential-impl input)
          (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
+         (core/solution-by-int-array-parallel-impl-aset-int input)
          (core/solution-by-int-array-parallel-impl-typehint-for-int input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
@@ -130,6 +135,12 @@
       => #(:result %)))
 
   (println)
+
+  (time
+    (fact
+      (println :solution-by-int-array-parallel-impl-aset-int)
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-parallel-impl-aset-int number-of-ints))
+      => #(:result %)))
 
   (time
     (fact

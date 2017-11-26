@@ -32,6 +32,14 @@
                   (catch Throwable _)))
     (first (filter #(not (zero? %)) int-seq))))
 
+(defn solution-by-int-array-parallel-impl-aset-int [^ints xs] ;type hints for performance
+  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
+    (doall (pmap (fn [num]
+                   (try (aset-int int-seq (int num) 0)
+                        (catch Throwable _)))
+                 xs))
+    (first (filter #(not (zero? %)) int-seq))))
+
 (defn solution-by-int-array-parallel-impl-typehint-for-int [^ints xs] ;type hints for performance
   (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
     (doall (pmap (fn [num]
