@@ -4,14 +4,28 @@
 
 ; (set! *unchecked-math* true) ;for the performance reason
 
-(defn solution-by-int-array-sequential-impl [^ints xs]      ;type hints for performance
+(defn solution-by-int-array-map-sequential-impl [^ints xs]      ;type hints for performance
+  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
+    (amap xs i _ (try (aset int-seq (aget xs i) 0)
+                      (catch Throwable _
+                        (aget xs i))))
+    (first (filter #(not (zero? %)) int-seq))))
+
+(defn solution-by-int-array-map-sequential-impl-without-hint [xs]      ;type hints for performance
+  (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
+    (amap xs i _ (try (aset int-seq (aget xs i) 0)
+                      (catch Throwable _
+                        (aget xs i))))
+    (first (filter #(not (zero? %)) int-seq))))
+
+(defn solution-by-int-array-reduce-sequential-impl [^ints xs]      ;type hints for performance
   (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
     (areduce xs i _ nil
              (try (aset int-seq (aget xs i) 0)
                   (catch Throwable _)))
     (first (filter #(not (zero? %)) int-seq))))
 
-(defn solution-by-int-array-sequential-impl-without-hint [xs]
+(defn solution-by-int-array-reduce-sequential-impl-without-hint [xs]
   (let [int-seq (int-array (take (+ 2 (alength xs)) (range)))]
     (areduce xs i _ nil
              (try (aset int-seq (aget xs i) 0)

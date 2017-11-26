@@ -11,8 +11,10 @@
     "test 1"
     (let [input (int-array [1 3 6 4 1 2])]
       (= 5
-         (core/solution-by-int-array-sequential-impl input)
-         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-map-sequential-impl input)
+         (core/solution-by-int-array-map-sequential-impl-without-hint input)
+         (core/solution-by-int-array-reduce-sequential-impl input)
+         (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -21,8 +23,10 @@
     "test 2"
     (let [input (int-array [1 2 3])]
       (= 4
-         (core/solution-by-int-array-sequential-impl input)
-         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-map-sequential-impl input)
+         (core/solution-by-int-array-map-sequential-impl-without-hint input)
+         (core/solution-by-int-array-reduce-sequential-impl input)
+         (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -31,8 +35,10 @@
     "test 3"
     (let [input (int-array [-1 -3])]
       (= 1
-         (core/solution-by-int-array-sequential-impl input)
-         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-map-sequential-impl input)
+         (core/solution-by-int-array-map-sequential-impl-without-hint input)
+         (core/solution-by-int-array-reduce-sequential-impl input)
+         (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -43,8 +49,10 @@
                             6 7 7 8 8 9 9 10 11 11 12 13 13 14 15 15 15 16 18 24 26
                             27 28 30 31 34 36 36 36 45 46 47 49 53 55 61 67 68 80 89 93 108 126])]
       (= 5
-         (core/solution-by-int-array-sequential-impl input)
-         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-map-sequential-impl input)
+         (core/solution-by-int-array-map-sequential-impl-without-hint input)
+         (core/solution-by-int-array-reduce-sequential-impl input)
+         (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -67,8 +75,10 @@
                             20 58 -4 -150
                             1 0])]
       (= 8
-         (core/solution-by-int-array-sequential-impl input)
-         (core/solution-by-int-array-sequential-impl-without-hint input)
+         (core/solution-by-int-array-map-sequential-impl input)
+         (core/solution-by-int-array-map-sequential-impl-without-hint input)
+         (core/solution-by-int-array-reduce-sequential-impl input)
+         (core/solution-by-int-array-reduce-sequential-impl-without-hint input)
          (core/solution-by-int-array-parallel-impl input)
          (core/solution-by-int-array-parallel-impl-without-hint input)
          (core/solution-by-persistent-vector input)
@@ -89,16 +99,28 @@
   (println :time-measure-with number-of-ints "ints")
   (time
     (fact
-      (println :solution-by-int-array-sequential-impl)
-      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-sequential-impl number-of-ints))
+      (println :solution-by-int-array-map-sequential-impl)
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-map-sequential-impl number-of-ints))
       => #(:result %)))
 
   (time
     (fact
-      (println :solution-by-int-array-sequential-impl-without-hint)
-      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-sequential-impl-without-hint number-of-ints))
+      (println :solution-by-int-array-map-sequential-impl-without-hint)
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-map-sequential-impl-without-hint number-of-ints))
       => #(:result %)))
 
+  (time
+    (fact
+      (println :solution-by-int-array-reduce-sequential-impl)
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-reduce-sequential-impl number-of-ints))
+      => #(:result %)))
+
+  (time
+    (fact
+      (println :solution-by-int-array-reduce-sequential-impl-without-hint)
+      (tc/quick-check 1 (find-by-solution core/solution-by-int-array-reduce-sequential-impl-without-hint
+                                          number-of-ints))
+      => #(:result %)))
 
   (time
     (fact
