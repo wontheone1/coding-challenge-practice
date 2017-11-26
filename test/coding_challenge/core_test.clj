@@ -81,7 +81,7 @@
   (prop/for-all [input-ints (gen/fmap #(int-array %)
                                       (gen/not-empty (gen/vector element-gen number-of-ints)))]
                 (do
-                  #_(println :answer (solution-by-int-array-sequential-impl ^ints input-ints))
+                  #_(println :answer (solution-fn ^ints input-ints))
                   #_(println (take 200 (filter pos? (sort ^ints input-ints))))
                   (> (solution-fn ^ints input-ints) 0))))
 
