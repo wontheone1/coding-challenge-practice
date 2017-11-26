@@ -99,17 +99,6 @@
       (tc/quick-check 1 (find-by-solution solution-by-int-array-sequential-impl-without-hint number-of-ints))
       => #(:result %)))
 
-  (time
-    (fact
-      (println :solution-by-persistent-vector)
-      (tc/quick-check 1 (find-by-solution solution-by-persistent-vector number-of-ints))
-      => #(:result %)))
-
-  (time
-    (fact
-      (println :solution-by-persistent-vector-without-hint)
-      (tc/quick-check 1 (find-by-solution solution-by-persistent-vector-without-hint number-of-ints))
-      => #(:result %)))
 
   (time
     (fact
@@ -121,6 +110,18 @@
     (fact
       (println :solution-by-int-array-parallel-impl-without-hint)
       (tc/quick-check 1 (find-by-solution solution-by-int-array-parallel-impl-without-hint number-of-ints))
+      => #(:result %)))
+
+  (time
+    (fact
+      (println :solution-by-persistent-vector)
+      (tc/quick-check 1 (find-by-solution solution-by-persistent-vector number-of-ints))
+      => #(:result %)))
+
+  (time
+    (fact
+      (println :solution-by-persistent-vector-without-hint)
+      (tc/quick-check 1 (find-by-solution solution-by-persistent-vector-without-hint number-of-ints))
       => #(:result %))))
 
 (measure-performance-of-all-function 50000)
