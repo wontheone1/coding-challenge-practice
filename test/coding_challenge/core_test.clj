@@ -1,5 +1,6 @@
 (ns coding-challenge.core-test
-  (:require [midje.sweet :refer :all])
+  (:require [coding-challenge.core :refer :all]
+            [midje.sweet :refer :all])
   (:import (jv.coding_challenge Solution)))
 
 (facts
@@ -51,3 +52,53 @@
   (fact
     "ex12"
     (Solution/solution 1610612737) => 28))
+
+(facts
+  "Solve with Clojure solutions"
+  (fact
+    "ex1"
+    (solution 6) => 0)
+
+  (fact
+    "ex2"
+    (solution 328) => 2)
+
+  (fact
+    "ex3"
+    (solution 5) => 1)
+
+  (fact
+    "ex4"
+    (solution 16) => 0)
+
+  (fact
+    "ex5"
+    (solution 1024) => 0)
+
+  (fact
+    "ex6"
+    (solution 1162) => 3)
+
+  (fact
+    "ex7"
+    (solution 51712) => 2)
+
+  (fact
+    "ex8"
+    (solution 20) => 1)
+
+  (fact
+    "ex9"
+    (solution 66561) => 9)
+
+  (fact
+    "ex10"
+    (solution 6291457) => 20)
+
+  (fact
+    "ex11"
+    (solution 805306373) => 25)
+
+  (fact
+    "ex12"
+    (solution 1610612737) => 28))
