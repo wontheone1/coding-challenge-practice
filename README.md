@@ -1,3 +1,3 @@
-# coding-challenge
+# ZigZagEscape
 
-Minimal template to practice coding challenges
+https://app.codility.com/programmers/task/zig_zag_escape/
