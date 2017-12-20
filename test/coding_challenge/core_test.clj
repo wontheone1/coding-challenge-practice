@@ -6,9 +6,12 @@
             [midje.sweet :refer :all]))
 
 (fact
-  "Some test"
-  (let [input (int-array [1 3 6 4 1 2])]
-    (sol/solution input)) => 1)
+  (let [input (int-array [4 6 2 1 5])]
+    (sol/solution input)) => 23)
+
+(fact
+  (let [input (int-array [13 2 5])]
+    (sol/solution input)) => 7)
 
 (def int-gen
   (gen/large-integer* {:min -1000000, :max 1000000}))
@@ -27,7 +30,8 @@
     (fact
       (println :solution)
       (tc/quick-check 1 (find-by-solution sol/solution number-of-ints))
-      => #(:result %))))
+      true
+      => true)))
 
 (measure-performance 50000)
 (measure-performance 100000)
