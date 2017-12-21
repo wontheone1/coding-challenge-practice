@@ -33,5 +33,7 @@
       true
       => true)))
 
-(measure-performance 50000)
-(measure-performance 100000)
+(measure-performance 3)
+(measure-performance 6)
+(measure-performance 12)
+(measure-performance 16)
