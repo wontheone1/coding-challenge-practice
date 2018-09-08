@@ -5,5 +5,16 @@
 (facts
   "Some tests"
   (fact
-    "Dummy tests "
-    1 => 1))
+    (sherlockAndAnagrams "abba") => 4)
+
+  (fact
+    (sherlockAndAnagrams "abcd") => 0)
+
+  (fact
+    (sherlockAndAnagrams "ifailuhkqq") => 3)
+
+  (fact
+    (sherlockAndAnagrams "kkkk") => 10)
+
+  (fact
+    (sherlockAndAnagrams "cdcd") => 5))
